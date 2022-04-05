@@ -16,9 +16,12 @@
     <circle id="circle3" />
   </svg>
   <p>4 esvg</p>
-  <button id="svgbt">
-    <esvg [stroke]="currentColor"></esvg>
+  <button class="svgbt">    
+    <esvg [key]="'circle'" [fill]="currentFillColor" [stroke]="currentStrokeColor"></esvg>
   </button>
+  <button class="svgbt">    
+     <esvg [key]="'rect'" [fill]="currentFillColor" [stroke]="currentStrokeColor"></esvg>
+</button>
   <p></p>
   <button (click)="switchColor()">Switch color</button>
 </div>
