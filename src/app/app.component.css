@@ -1,0 +1,36 @@
+p {
+  font-family: Lato;
+}
+
+/*#svgbt {
+  width: 100px;
+  height: 100px;
+}*/
+
+#circle3 {
+  cx: 50;
+  cy: 50;
+  r: 50;
+  /* fill: #dfac20;
+  stroke: #3983ab;
+  stroke-width: 2;*/
+}
+
+#mysvg {
+  fill: #46df20;
+  stroke: #3983ab;
+  stroke-width: 2;
+}
+
+/* #circle1 {
+  fill: beige;
+  stroke-width: 8;
+  stroke: #3983ab;
+}
+*/
+
+.mycircle {
+  fill: beige;
+  stroke-width: 8;
+  stroke: #3983ab;
+}
