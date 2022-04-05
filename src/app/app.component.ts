@@ -26,5 +26,6 @@ export class AppComponent {
     this.currentStrokeColor = this.strokeColors[this.ind];
     this.currentFillColor =
       this.strokeColors[(this.ind + 1) % this.strokeColors.length];
+    console.log('switched cols');
   }
 }

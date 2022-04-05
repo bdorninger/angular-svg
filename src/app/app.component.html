@@ -12,16 +12,28 @@
     <circle id="circle2" [style]="cstyle" />
   </svg>
   <p>3</p>
-  <svg #mysvg id="mysvg">
-    <circle id="circle3" />
+  <svg class="mysvg" width="100" height="100">
+    <circle class="circle50" />
   </svg>
+  <svg class="mysvg inactive">
+    <circle class="circle50" />
+  </svg>
+
   <p>4 esvg</p>
-  <button class="svgbt">    
-    <esvg [key]="'circle'" [fill]="currentFillColor" [stroke]="currentStrokeColor"></esvg>
+  <button class="svgbt">
+    <esvg
+      [key]="'circle'"
+      [fill]="currentFillColor"
+      [stroke]="currentStrokeColor"
+    ></esvg>
   </button>
-  <button class="svgbt">    
-     <esvg [key]="'rect'" [fill]="currentFillColor" [stroke]="currentStrokeColor"></esvg>
-</button>
+  <button class="svgbt">
+    <esvg
+      [key]="'rect'"
+      [fill]="currentFillColor"
+      [stroke]="currentStrokeColor"
+    ></esvg>
+  </button>
   <p></p>
   <button (click)="switchColor()">Switch color</button>
 </div>

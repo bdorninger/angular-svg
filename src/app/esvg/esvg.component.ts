@@ -10,7 +10,7 @@ const symbols: { [key: string]: string } = {
     r="50"      
   />
 </svg>`,
-  rect: `<svg width="100" height="100"><rect style="%STYLE" x="0" y="0" width="100" height="100"/></svg>`,
+  rect: `<svg width="100" height="100"><rect style="%STYLE%" x="0" y="0" width="100" height="100"/></svg>`,
 };
 
 @Component({
@@ -28,18 +28,19 @@ export class ESVGComponent implements OnInit {
   public stroke?: string; // = '#ff83ac';
 
   @Input()
-  public fill?: string;
+  public fill: string;
 
   ngOnInit() {}
 
   svgContent(): SafeHtml {
-    const str = symbols[this.key] ?? symbols['circle'];
-    str.replace(
-      '%STYLE',
+    let str = symbols[this.key] ?? symbols['circle'];
+    str = str.replace(
+      '%STYLE%',
       `fill: ${this.fill ? this.fill : '#ff0000'};stroke:${
         this.stroke ? this.stroke : '#3983ac'
       }`
     );
+    // console.log('svgContent', str);
     return this.sanitizer.bypassSecurityTrustHtml(str);
   }
 }

@@ -1,13 +1,9 @@
-p {
-  font-family: Lato;
-}
-
 /*#svgbt {
   width: 100px;
   height: 100px;
 }*/
 
-#circle3 {
+.circle50 {
   cx: 50;
   cy: 50;
   r: 50;
@@ -16,18 +12,19 @@ p {
   stroke-width: 2;*/
 }
 
-#mysvg {
-  fill: #46df20;
-  stroke: #3983ab;
-  stroke-width: 2;
+.inactive {
+  filter: grayscale(0.5) blur(10px);
 }
 
-/* #circle1 {
-  fill: beige;
-  stroke-width: 8;
+.mysvg {
+  fill: #76dff0;
   stroke: #3983ab;
+  stroke-width: 2;
+  max-width: 100; /* ignored by svg itself! */
+  max-height: 100; /* ignored by svg itself! */
+  width: 100; /* ignored by svg itself! */
+  height: 100; /* ignored by svg itself! */
 }
-*/
 
 .mycircle {
   fill: beige;
