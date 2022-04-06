@@ -36,5 +36,16 @@
   </button>
   <p></p>
   <button (click)="switchColor()">Switch color</button>
+
+  <p>5 ssvg</p>
+  <button class="svgbt">
+  <ssvg
+    class="toolicon"
+    [ngClass]="iconactive ? 'active' : 'inactive'"    
+></ssvg>
+  </button>
+  <div>
+    <button (click)="toggleActive()">Toggle active</button>
+  </div>
 </div>
 <p>end</p>

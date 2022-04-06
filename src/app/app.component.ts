@@ -1,5 +1,5 @@
 import { Component, VERSION } from '@angular/core';
-
+//
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -18,6 +18,8 @@ export class AppComponent {
   public currentStrokeColor = '#000000';
   public currentFillColor = '#ffffff';
 
+  public iconactive = true;
+
   public switchColor() {
     this.ind++;
     if (this.ind >= this.strokeColors.length) {
@@ -27,5 +29,9 @@ export class AppComponent {
     this.currentFillColor =
       this.strokeColors[(this.ind + 1) % this.strokeColors.length];
     console.log('switched cols');
+  }
+
+  public toggleActive() {
+    this.iconactive = !this.iconactive;
   }
 }

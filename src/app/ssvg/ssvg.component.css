@@ -1,0 +1,25 @@
+/* .svg-container {
+  background-color: blueviolet;
+} */
+
+.svg-container.active svg {
+  stroke: #00ff00;
+  fill: #ff5f00;
+  /* color: #ff5f00; */
+}
+
+.toolicon.active svg {
+  stroke: #00ff00;
+  fill: #ff5f00;
+  /* color: #ff5f00; */
+}
+
+.svg-container.inactive svg {
+  fill: #00ff00;
+  stroke: #ff5f00;
+}
+
+.toolicon.inactive svg {
+  fill: #00ff00;
+  stroke: #ff5f00;
+}
