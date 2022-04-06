@@ -57,7 +57,7 @@ async function getImage(key?: string): Promise<string> {
     return rect;
   }
   if (key.endsWith('pic')) {
-    return '<img src="echev.png" width="100" height="100" />';
+    return '<img src="https://stackblitz.com/files/angular-ivy-rbyhxs/github/bdorninger/angular-svg/master/src/assets/parser.jpg" width="100" height="100" />';
   }
   return rect;
 }

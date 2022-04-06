@@ -20,7 +20,11 @@
 }
 
 .toolicon.inactive svg {
-  fill: #00ff00;
-  stroke: #ff5f00;
+  fill: #cccccc;
+  stroke: #3a3a3a;
   stroke-width: 10px;
+}
+
+.toolicon.inactive img {
+  filter: contrast(0.3);
 }
