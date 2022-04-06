@@ -39,21 +39,25 @@ export class SSVGComponent implements OnInit, AfterViewInit {
 
   public ngAfterViewInit(): void {
     console.log('divafter', this.svgdiv);
-    this.svgdiv.nativeElement.outerHTML = rect;
+
+    getImage(this.key).then(html => this.svgdiv.nativeElement.outerHTML = html).catch(e => console.error('No pic',e))
+
+    
   }
 
   /* NOT USED
   
   public svgContent(): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(rect);
-  }*/ 
+  }*/
 }
 
-async function getImage(key?: string): string {
-  if(key==null) {
+async function getImage(key?: string): Promise<string> {
+  if (key == null) {
     return rect;
   }
-  if(key.endsWith("bin")) {
-    return '<img href=""/>'
+  if (key.endsWith('pic')) {
+    return '<img src="echev.png" width="100" height="100" />';
   }
+  return rect;
 }
