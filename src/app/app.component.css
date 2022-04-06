@@ -12,8 +12,8 @@
   stroke-width: 2;*/
 }
 
-.inactive {
-  filter: grayscale(0.9); /*  blur(1px);*/
+.svg-inactive {
+  filter: sepia(0.9) contrast(0.5); /*  blur(1px);*/
 }
 
 .mysvg {

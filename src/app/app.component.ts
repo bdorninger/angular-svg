@@ -6,7 +6,7 @@ import { Component, VERSION } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  name = 'Angular ' + VERSION.major;
+  name = 'SVG Testing with Angular ' + VERSION.major;
 
   strokeColors = ['#ff00ff', '#00ff00', '#ffffff'];
   ind = 0;

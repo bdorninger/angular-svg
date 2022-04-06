@@ -19,6 +19,9 @@ const rect = `<svg width="100" height="100"><rect x="0" y="0" width="100" height
 })
 export class SSVGComponent implements OnInit, AfterViewInit {
   @Input()
+  public key: string;
+
+  @Input()
   public active = false;
 
   @ViewChild('svgdiv', {
@@ -39,7 +42,18 @@ export class SSVGComponent implements OnInit, AfterViewInit {
     this.svgdiv.nativeElement.outerHTML = rect;
   }
 
+  /* NOT USED
+  
   public svgContent(): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(rect);
+  }*/ 
+}
+
+async function getImage(key?: string): string {
+  if(key==null) {
+    return rect;
+  }
+  if(key.endsWith("bin")) {
+    return '<img href=""/>'
   }
 }
