@@ -43,18 +43,10 @@
 
   <p>5 ssvg</p>
   <button class="svgbt">
-    <ssvg
-      [key]="'rect'"
-      class="toolicon"
-      [ngClass]="iconactive ? 'active' : 'inactive'"
-    ></ssvg>
+    <ssvg [key]="'rect'" [ngClass]="iconactive ? 'active' : 'inactive'"></ssvg>
   </button>
   <button class="svgbt">
-    <ssvg
-      [key]="'pic'"
-      class="toolicon"
-      [ngClass]="iconactive ? 'active' : 'inactive'"
-    ></ssvg>
+    <ssvg [key]="'pic'" [ngClass]="iconactive ? 'active' : 'inactive'"></ssvg>
   </button>
   <div>
     <button (click)="toggleActive()">Toggle active</button>

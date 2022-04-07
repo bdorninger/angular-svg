@@ -13,18 +13,18 @@
   stroke: #ff5f00;
 }
 
-.toolicon.active svg {
+ssvg.active svg {
   stroke: #00ff00;
   fill: #ff5f00;
   stroke-width: 5px;
 }
 
-.toolicon.inactive svg {
+ssvg.inactive svg {
   fill: #cccccc;
   stroke: #3a3a3a;
   stroke-width: 10px;
 }
 
-.toolicon.inactive img {
-  filter: contrast(0.3);
+ssvg.inactive img {
+  filter: sepia(0.9) contrast(0.3);
 }
