@@ -31,3 +31,11 @@
   stroke-width: 8;
   stroke: #3983ab;
 }
+
+button.selected {
+  background-color: white;
+}
+
+button.deselected {
+  background-color: black;
+}

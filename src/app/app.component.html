@@ -46,7 +46,17 @@
     <ssvg [key]="'rect'" [ngClass]="iconactive ? 'active' : 'inactive'"></ssvg>
   </button>
   <button class="svgbt">
-    <ssvg [key]="'pic'" [ngClass]="iconactive ? 'active' : 'inactive'"></ssvg>
+    <ssvg
+      [key]="'pic'"
+      [ngClass]="iconactive ? 'selected' : 'deselected'"
+    ></ssvg>
+  </button>
+  <button class="svgbt" [ngClass]="iconactive ? 'selected' : 'deselected'">
+    <ssvg
+      class="selection"
+      [key]="'editdark'"
+      [ngClass]="iconactive ? 'active' : 'inactive'"
+    ></ssvg>
   </button>
   <div>
     <button (click)="toggleActive()">Toggle active</button>
