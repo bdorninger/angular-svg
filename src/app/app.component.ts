@@ -9,7 +9,14 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class AppComponent {
   name = 'SVG Testing with Angular ' + VERSION.major;
 
-  public imgObjUrl: SafeUrl;
+  private _imgObjUrl: SafeUrl;
+  private unsafeUrl: string;
+
+  public get imgObjUrl(): SafeUrl {
+    const u = this._imgObjUrl;
+    setTimeout(() => URL.revokeObjectURL(this.unsafeUrl), 0);
+    return u;
+  }
 
   strokeColors = ['#ff00ff', '#00ff00', '#ffffff'];
   ind = 0;
@@ -24,18 +31,17 @@ export class AppComponent {
   public iconactive = [true, false];
 
   constructor(private readonly sanitizer: DomSanitizer) {
-    this.imgObjUrl = this.sanitizer.bypassSecurityTrustUrl(
-      URL.createObjectURL(
-        new Blob(
-          [
-            `<svg id="objrect" class="objrect" fill="aqua" width="50" height="50" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="50" height="50"/></svg>`,
-          ],
-          {
-            type: 'image/svg+xml',
-          }
-        )
+    this.unsafeUrl = URL.createObjectURL(
+      new Blob(
+        [
+          `<svg id="objrect" class="objrect" fill="aqua" width="50" height="50" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="50" height="50"/></svg>`,
+        ],
+        {
+          type: 'image/svg+xml',
+        }
       )
     );
+    this._imgObjUrl = this.sanitizer.bypassSecurityTrustUrl(this.unsafeUrl);
   }
 
   public switchColor() {

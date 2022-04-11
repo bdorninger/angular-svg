@@ -1,3 +1,10 @@
+# Styleable SVGS and cacheable / referencable Images
+
+## Referencing svg images <use/>
+
+- On first use, the svg is attached to the document. Either First request of an svg, the svg may be used directly (embedded where needed) OR attached to the document's end and also referenced with <use>
+- Subsequent occurrences of the same image reference to the first image with <use>
+
 ## Caching images with objectUrls:
 
 Images are loaded and raw data is packed into a Blob
@@ -14,6 +21,8 @@ In our context, when is it safe to revoke the OU?
 
 ### --:
 
+- the createObjectUrl/revokeObjectUrl API was made for a different use case
+
 - creating the blob needs the correct mime type
 
 - Object urls must be revoked if no more necessary --> when is it safe to revoke the url?
@@ -23,3 +32,5 @@ In our context, when is it safe to revoke the OU?
 - svgs wrapped in blobs cannot be styled anymore
 
 - object urls need to be sanitized (as other programmatic content applied to ng templates)
+
+- poor diagnostics: there is just a difficult to read hash value identifying the image - difficult to find out which image this is actually!
