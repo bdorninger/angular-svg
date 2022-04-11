@@ -1,4 +1,5 @@
 import { Component, VERSION } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 //
 @Component({
   selector: 'my-app',
@@ -7,6 +8,8 @@ import { Component, VERSION } from '@angular/core';
 })
 export class AppComponent {
   name = 'SVG Testing with Angular ' + VERSION.major;
+
+  public imgObjUrl: SafeUrl;
 
   strokeColors = ['#ff00ff', '#00ff00', '#ffffff'];
   ind = 0;
@@ -19,7 +22,21 @@ export class AppComponent {
   public currentFillColor = '#ffffff';
 
   public iconactive = [true, false];
-  
+
+  constructor(private readonly sanitizer: DomSanitizer) {
+    this.imgObjUrl = this.sanitizer.bypassSecurityTrustUrl(
+      URL.createObjectURL(
+        new Blob(
+          [
+            `<svg id="objrect" class="objrect" fill="aqua" width="50" height="50" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="50" height="50"/></svg>`,
+          ],
+          {
+            type: 'image/svg+xml',
+          }
+        )
+      )
+    );
+  }
 
   public switchColor() {
     this.ind++;
@@ -33,7 +50,7 @@ export class AppComponent {
   }
 
   public toggleActive(groupId: number) {
-    if(groupId>=0 && groupId<this.iconactive.length) {
+    if (groupId >= 0 && groupId < this.iconactive.length) {
       this.iconactive[groupId] = !this.iconactive[groupId];
     }
   }

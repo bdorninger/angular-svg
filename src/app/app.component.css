@@ -3,6 +3,10 @@
   height: 100px;
 }*/
 
+.objrect {
+  fill: yellow;
+}
+
 .circle50 {
   cx: 50;
   cy: 50;

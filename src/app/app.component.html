@@ -11,6 +11,7 @@
   <svg>
     <circle id="circle2" [style]="cstyle" />
   </svg> -->
+  <img [src]="imgObjUrl"/>
   <p>1</p>
   <svg class="mysvg" width="100" height="100">
     <circle class="circle50" />
@@ -39,10 +40,16 @@
 
   <p>3 ssvg</p>
   <button class="svgbt">
-    <ssvg [key]="'rect'" [ngClass]="iconactive[0] ? 'active' : 'inactive'"></ssvg>
+    <ssvg
+      [key]="'rect'"
+      [ngClass]="iconactive[0] ? 'active' : 'inactive'"
+    ></ssvg>
   </button>
   <button class="svgbt">
-    <ssvg [key]="'pic'" [ngClass]="iconactive[0] ? 'active' : 'inactive'"></ssvg>
+    <ssvg
+      [key]="'pic'"
+      [ngClass]="iconactive[0] ? 'active' : 'inactive'"
+    ></ssvg>
   </button>
   <button class="svgbt" [ngClass]="iconactive[0] ? 'selected' : 'deselected'">
     <ssvg

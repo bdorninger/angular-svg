@@ -53,4 +53,12 @@ export class ResourceService {
     }
     return svg;
   }
+
+  private appendSvgHolder() {
+    if (document.getElementById('images') === undefined) {
+      const divElemImages = document.createElement(`HTMLDivElement`);
+      const att = divElemImages.setAttribute('id', 'images');
+      document.appendChild(divElemImages);
+    }
+  }
 }
