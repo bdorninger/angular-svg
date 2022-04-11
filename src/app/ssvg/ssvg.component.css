@@ -31,9 +31,11 @@ ssvg.inactive img {
 .selection.active svg {
   stroke: none;
   fill: black;
+  background-color: white;
 }
 
 .selection.inactive svg {
   stroke: none;
   fill: white;
+  background-color: black;
 }

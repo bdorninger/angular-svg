@@ -18,7 +18,8 @@ export class AppComponent {
   public currentStrokeColor = '#000000';
   public currentFillColor = '#ffffff';
 
-  public iconactive = true;
+  public iconactive = [true, false];
+  
 
   public switchColor() {
     this.ind++;
@@ -31,7 +32,9 @@ export class AppComponent {
     console.log('switched cols');
   }
 
-  public toggleActive() {
-    this.iconactive = !this.iconactive;
+  public toggleActive(groupId: number) {
+    if(groupId>=0 && groupId<this.iconactive.length) {
+      this.iconactive[groupId] = !this.iconactive[groupId];
+    }
   }
 }

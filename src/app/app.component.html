@@ -1,9 +1,5 @@
 <hello name="{{ name }}"></hello>
-<img
-  src="https://stackblitz.com/files/angular-ivy-rbyhxs/github/bdorninger/angular-svg/master/src/assets/parser.jpg"
-  width="100"
-  height="100"
-/>
+
 <div>
   <!-- <p>1</p>
   <div>
@@ -15,7 +11,7 @@
   <svg>
     <circle id="circle2" [style]="cstyle" />
   </svg> -->
-  <p>3</p>
+  <p>1</p>
   <svg class="mysvg" width="100" height="100">
     <circle class="circle50" />
   </svg>
@@ -23,7 +19,7 @@
     <circle class="circle50" />
   </svg>
 
-  <p>4 esvg</p>
+  <p>2 esvg</p>
   <button class="svgbt">
     <esvg
       [key]="'circle'"
@@ -41,25 +37,33 @@
   <p></p>
   <button (click)="switchColor()">Switch color</button>
 
-  <p>5 ssvg</p>
+  <p>3 ssvg</p>
   <button class="svgbt">
-    <ssvg [key]="'rect'" [ngClass]="iconactive ? 'active' : 'inactive'"></ssvg>
+    <ssvg [key]="'rect'" [ngClass]="iconactive[0] ? 'active' : 'inactive'"></ssvg>
   </button>
   <button class="svgbt">
-    <ssvg
-      [key]="'pic'"
-      [ngClass]="iconactive ? 'selected' : 'deselected'"
-    ></ssvg>
+    <ssvg [key]="'pic'" [ngClass]="iconactive[0] ? 'active' : 'inactive'"></ssvg>
   </button>
-  <button class="svgbt" [ngClass]="iconactive ? 'selected' : 'deselected'">
+  <button class="svgbt" [ngClass]="iconactive[0] ? 'selected' : 'deselected'">
     <ssvg
       class="selection"
       [key]="'editdark'"
-      [ngClass]="iconactive ? 'active' : 'inactive'"
+      [ngClass]="iconactive[0] ? 'active' : 'inactive'"
     ></ssvg>
   </button>
   <div>
-    <button (click)="toggleActive()">Toggle active</button>
+    <button (click)="toggleActive(0)">Toggle active</button>
+  </div>
+  <p>4 ssvg</p>
+  <button class="svgbt" [ngClass]="iconactive[1] ? 'selected' : 'deselected'">
+    <ssvg
+      class="selection"
+      [key]="'editdark'"
+      [ngClass]="iconactive[1] ? 'active' : 'inactive'"
+    ></ssvg>
+  </button>
+  <div>
+    <button (click)="toggleActive(1)">Toggle active</button>
   </div>
 </div>
 <p>end</p>
