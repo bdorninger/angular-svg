@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 
 const rect = `<svg id="rect" width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="100" height="100"/></svg>`;
 
@@ -25,13 +25,17 @@ export interface ImgUsage {
   providedIn: 'root',
 })
 export class ResourceService {
-  private cache: Map<string, ImgUsage>;
+  private cache?: Map<string, ImgUsage>;
 
   constructor() {
     this.cache = new Map();
   }
 
   public async getImage(key?: string): Promise<string> {
+    if (this.appendSvgCacheElement() !== undefined) {
+      console.info(`Create elem based cache : Success`);
+    }
+
     if (key == null) {
       throw new Error(`No resource key specified`);
     }
@@ -42,23 +46,61 @@ export class ResourceService {
     if (this.cache.has(key)) {
       const usage = this.cache.get(key);
       usage.refCount++;
-      return `<svg width="24" height="24" class="referencing-svg"><use href="#${key}"/></svg>`;
+      return `<svg width="24" height="24"><use href="#${key}"/></svg>`;
     }
+
     const svg = svgImages[key] ?? rect;
+
     if (svg !== undefined) {
       this.cache.set(key, {
         refCount: 0,
         img: svg,
       });
+      this.appendSvgToChacheElem(key, svg);
+
+      if (this.elemCacheHasImage(undefined, key)) {
+        return `<svg width="24" height="24"><use href="#${key}"/></svg>`;
+      }
     }
     return svg;
   }
 
-  private appendSvgHolder() {
-    if (document.getElementById('images') === undefined) {
-      const divElemImages = document.createElement(`HTMLDivElement`);
-      const att = divElemImages.setAttribute('id', 'images');
-      document.appendChild(divElemImages);
+  private elemCacheHasImage(
+    cacheRoot: HTMLElement | undefined,
+    key: string
+  ): boolean {
+    if (cacheRoot === undefined) {
+      cacheRoot = document.getElementById('images-cache');
     }
+    const list = cacheRoot.getElementsByTagName('svg');
+    for (let i = 0; i < list.length; i++) {
+      if (list.item(i).getAttribute('id') === key) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private appendSvgToChacheElem(
+    key: string,
+    svg: string
+  ): HTMLElement | undefined {
+    const cacheRoot = document.getElementById('images-cache');
+    if (cacheRoot != null && !this.elemCacheHasImage(cacheRoot, key)) {
+      const svgElem = document.createElement('svg');
+      const el = cacheRoot.appendChild(svgElem);
+      svgElem.outerHTML = svg;
+    }
+    return undefined;
+  }
+
+  private appendSvgCacheElement(): HTMLElement | undefined {
+    if (document.getElementById('images-cache') == null) {
+      const divElemImages = document.createElement(`div`);
+      divElemImages.hidden = true;
+      const att = divElemImages.setAttribute('id', 'images-cache');
+      return document.body.appendChild(divElemImages);
+    }
+    return undefined;
   }
 }
