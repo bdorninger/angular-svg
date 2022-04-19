@@ -1,4 +1,4 @@
-import { Component, VERSION } from '@angular/core';
+import { Component, OnDestroy, VERSION } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 //
 @Component({
@@ -6,7 +6,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   name = 'SVG Testing with Angular ' + VERSION.major;
 
   private _imgObjUrl: SafeUrl;
@@ -14,7 +14,7 @@ export class AppComponent {
 
   public get imgObjUrl(): SafeUrl {
     const u = this._imgObjUrl;
-    setTimeout(() => URL.revokeObjectURL(this.unsafeUrl), 0);
+    // setTimeout(() => URL.revokeObjectURL(this.unsafeUrl), 0);
     return u;
   }
 
@@ -42,6 +42,10 @@ export class AppComponent {
       )
     );
     this._imgObjUrl = this.sanitizer.bypassSecurityTrustUrl(this.unsafeUrl);
+  }
+
+  public ngOnDestroy() {
+    URL.revokeObjectURL(this.unsafeUrl);
   }
 
   public switchColor() {
