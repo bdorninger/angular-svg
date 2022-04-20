@@ -35,6 +35,10 @@
   stroke-width: 8;
   stroke: #3983ab;
 }
+
+.bt-small {
+  /* */
+}
 /*
 button.selected {
   background-color: white;
