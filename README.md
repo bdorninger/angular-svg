@@ -15,6 +15,7 @@
 - especially, if SVGs are complex
 - still allows individual styling of the referencing svgs
 - the proposed `ssvg.component` wrapper logic can also provide binary images (jpg, png)
+- styling bin images can be done with css-filters
 - won't interfere with the existing LIFO cache - albeit SVGs should not be converted to data Urls anymore
 
 ### --:
