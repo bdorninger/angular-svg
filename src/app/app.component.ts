@@ -14,7 +14,7 @@ export class AppComponent implements OnDestroy {
 
   public get imgObjUrl(): SafeUrl {
     const u = this._imgObjUrl;
-    // setTimeout(() => URL.revokeObjectURL(this.unsafeUrl), 0);
+    this.revokeObject(); // some time after first access revoke the object URL  - but still resuse it - what consequences?
     return u;
   }
 
@@ -45,7 +45,17 @@ export class AppComponent implements OnDestroy {
   }
 
   public ngOnDestroy() {
-    URL.revokeObjectURL(this.unsafeUrl);
+    // URL.revokeObjectURL(this.unsafeUrl);
+  }
+
+  private revokeObject() {
+    if (this.unsafeUrl !== undefined) {
+      console.log(`Revoking object URL`);
+      setTimeout(() => {
+        URL.revokeObjectURL(this.unsafeUrl);
+      }, 5);
+      this.unsafeUrl = undefined;
+    }
   }
 
   public switchColor() {
