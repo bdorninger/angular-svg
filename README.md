@@ -5,7 +5,7 @@
 ## Referencing svg images <use/>
 
 - On first use, the svg is attached to the document. Either First request of an svg, the svg may be used directly (embedded where needed) OR attached to the document's end and also referenced with <use>
-- Subsequent occurrences of the same image reference to the first image with &lt;use&gt;
+- Subsequent occurrences of the same image reference to the first image with `<`use`>`;
 
 ## Caching images with objectUrls:
 
