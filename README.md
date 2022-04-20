@@ -2,10 +2,25 @@
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-ivy-rbyhxs)
 
-## Referencing svg images `<use/>`
+## Referencing svg images/parts with `<use/>`
 
-- On first use, the svg is attached to the document. Either First request of an svg, the svg may be used directly (embedded where needed) OR attached to the document's end and also referenced with <use>
-- Subsequent occurrences of the same image reference to the first image with `<use>`;
+- On use, a svg is attached to the document's end (in a hidden div --&gt; element based cache). the actual location of usage creates creates an empty svg tag and references the cached one with `<use>`
+- Subsequent occurrences of the same image reference to the cached one with `<use>`, too
+- This "element based cache" must be maintained, ie the references to a cached image must be tracked. The cached image has to be removed from the document, when no more views have a referenciog svg
+- Reference tracking can be done by the svg component wrapper (`ssvg.component` in this example). Reference count up/down shall be done in ngOnInit/ngOnDestroy
+
+### ++:
+
+- Can save Memory if using a a high number of identical svgs in one or more views at the same time.
+- especially, if SVGs are complex
+- still allows individual styling of the referencing svgs
+- the proposed `ssvg.component` wrapper logic can also provide binary images (jpg, png)
+- won't interfere with the existing LIFO cache - albeit SVGs should not be converted to data Urls anymore
+
+### --:
+
+- Needs separate treatment for svgs
+- Needs explicit reference tracking
 
 ## Caching images with objectUrls:
 
@@ -14,7 +29,9 @@ Images are loaded and raw data is packed into a Blob
 In our context, when is it safe to revoke the OU?
 
 - no view is referencing it anymore?
-- using our resource cache: when it is moved out of the cache
+- using our resource cache: when it is moved out of the
+
+**NOT RECOMMENDED: Blobs/objectUrls have been introduced for a different use case**
 
 ### ++:
 
