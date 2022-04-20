@@ -7,7 +7,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnDestroy {
-  name = 'SVG Testing with Angular ' + VERSION.major;
+  name = 'SVG Experiments';
 
   private _imgObjUrl: SafeUrl;
   private unsafeUrl: string;
