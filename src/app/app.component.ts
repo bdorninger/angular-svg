@@ -1,4 +1,4 @@
-import { Component, OnDestroy, VERSION } from '@angular/core';
+import { Component, OnDestroy, VERSION, ViewContainerRef } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 //
 @Component({
@@ -30,7 +30,10 @@ export class AppComponent implements OnDestroy {
 
   public iconactive = [true, false];
 
-  constructor(private readonly sanitizer: DomSanitizer) {
+  constructor(
+    private readonly vc: ViewContainerRef,
+    private readonly sanitizer: DomSanitizer
+  ) {
     this.unsafeUrl = URL.createObjectURL(
       new Blob(
         [
@@ -72,6 +75,14 @@ export class AppComponent implements OnDestroy {
   public toggleActive(groupId: number) {
     if (groupId >= 0 && groupId < this.iconactive.length) {
       this.iconactive[groupId] = !this.iconactive[groupId];
+    }
+  }
+
+  public deleteSome() {
+    const d = document.getElementById('deletable');
+    console.log(d);
+    if (d && d.firstChild) {
+      d.firstChild.remove();
     }
   }
 }

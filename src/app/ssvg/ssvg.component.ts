@@ -3,8 +3,10 @@ import {
   Component,
   ElementRef,
   Input,
+  OnDestroy,
   OnInit,
   ViewChild,
+  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -16,39 +18,52 @@ import { ResourceService } from '../resource.service';
   styleUrls: ['./ssvg.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class SSVGComponent implements OnInit, AfterViewInit {
+export class SSVGComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input()
   public key: string;
 
   @Input()
   public active = false;
 
-  @ViewChild('svgdiv', {
-    read: ElementRef,
-  })
-  private svgdiv: ElementRef;
+  private mutationObserver: MutationObserver;
 
   constructor(
     private readonly resourceService: ResourceService,
-    private readonly sanitizer: DomSanitizer
+    private readonly viewContainerRef: ViewContainerRef
   ) {
     //console.log('ctor');
+    this.mutationObserver = new MutationObserver(this.mutated.bind(this));
   }
 
   public ngOnInit(): void {
     //console.log('divinit', this.svgdiv);
   }
 
-  public ngAfterViewInit(): void {
-    //console.log('divafter', this.svgdiv);
+  public ngOnDestroy() {
+    this.mutationObserver.disconnect();
+  }
 
+  public ngAfterViewInit(): void {
+    this.mutationObserver.observe(this.viewContainerRef.element.nativeElement, {
+      childList: true,
+    });
     this.resourceService
       .getImage(this.key)
       .then((html) => {
         console.log('got pic', html);
-        this.svgdiv.nativeElement.outerHTML = html;
+        (this.viewContainerRef.element.nativeElement as HTMLElement).innerHTML =
+          html;
+        (
+          this.viewContainerRef.element.nativeElement as HTMLElement
+        ).firstChild.addEventListener('unload', () => {
+          console.log('Unloaded', this.key);
+        });
       })
       .catch((e) => console.error('No pic', e));
+  }
+
+  private mutated(mutations: MutationRecord[], obs: MutationObserver) {
+    console.log(`ssvg ${this.key} mutated`, mutations);
   }
 
   /* NOT USED

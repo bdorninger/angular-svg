@@ -136,8 +136,12 @@ export class ResourceService {
       divElemImages.id = 'images-cache';
       document.getElementsByTagName('body')[0].appendChild(divElemImages);
       this.cacheRoot = divElemImages;
-      console.log('Created cache elem', this.cacheRoot);
+      console.log('Created cache elem', this.cacheRoot);      
     }
     return this.hasCacheRoot();
+  }
+
+  private mutated(mutations: MutationRecord[], obs: MutationObserver) {
+    console.log(`mutations!`, mutations);
   }
 }

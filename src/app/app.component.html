@@ -83,6 +83,8 @@
       [ngClass]="iconactive[1] ? 'selected' : 'deselected'"
     >
       <ssvg
+        id="deletable"
+        #deletable
         class="selection"
         [key]="'editlight'"
         [ngClass]="iconactive[1] ? 'active' : 'inactive'"
@@ -91,6 +93,7 @@
   </div>
   <div>
     <button (click)="toggleActive(1)">Toggle active</button>
+    <button (click)="deleteSome()">DEL</button>
   </div>
 </div>
 <p>end</p>
