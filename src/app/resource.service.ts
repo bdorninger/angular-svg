@@ -53,6 +53,16 @@ export class ResourceService {
     return this.makeUseSvg(key);
   }
 
+  public derefImage(key: string) {
+    if (this.cache.has(key)) {
+      const usage = this.cache.get(key);
+      if (--usage.refCount <= 0) {
+        this.cache.delete(key);
+        usage.img.remove();
+      }
+    }
+  }
+
   public cacheImage(key: string, svg?: string) {
     console.log('+++ Caching image', key, svg);
     // cachin is async. meanwhile someone else might have inserted the image. ask the cache again if the image is there
@@ -136,12 +146,8 @@ export class ResourceService {
       divElemImages.id = 'images-cache';
       document.getElementsByTagName('body')[0].appendChild(divElemImages);
       this.cacheRoot = divElemImages;
-      console.log('Created cache elem', this.cacheRoot);      
+      console.log('Created cache elem', this.cacheRoot);
     }
     return this.hasCacheRoot();
-  }
-
-  private mutated(mutations: MutationRecord[], obs: MutationObserver) {
-    console.log(`mutations!`, mutations);
   }
 }

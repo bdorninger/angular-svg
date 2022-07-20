@@ -40,7 +40,9 @@ export class SSVGComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   public ngOnDestroy() {
+    console.log('destroy', this.key);
     this.mutationObserver.disconnect();
+    this.resourceService.derefImage(this.key);
   }
 
   public ngAfterViewInit(): void {

@@ -82,7 +82,8 @@ export class AppComponent implements OnDestroy {
     const d = document.getElementById('deletable');
     console.log(d);
     if (d && d.firstChild) {
-      d.firstChild.remove();
+      // d.firstChild.remove();
+      d.remove();
     }
   }
 }
