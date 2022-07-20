@@ -36,13 +36,21 @@
   stroke: #3983ab;
 }
 
-button {
+.svgbt {
   height: 50px;
   width: 50px;
 }
 
+.button-bar {
+  display: flex;
+  align-content: center;
+  gap: 5px;
+}
+
 .bt-small {
-  /* */
+  width: 25px;
+  height: 25px;
+  padding: 1px;
 }
 /*
 button.selected {

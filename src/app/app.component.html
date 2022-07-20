@@ -24,14 +24,14 @@
   </svg>
 
   <p>2 esvg</p>
-  <button class="svgbt">
+  <button class="esvgbt">
     <esvg
       [key]="'circle'"
       [fill]="currentFillColor"
       [stroke]="currentStrokeColor"
     ></esvg>
   </button>
-  <button class="svgbt">
+  <button class="esvgbt">
     <esvg
       [key]="'rect'"
       [fill]="currentFillColor"
@@ -42,39 +42,53 @@
   <button (click)="switchColor()">Switch color</button>
 
   <p>3 ssvg</p>
-  <button class="svgbt">
-    <ssvg
-      [key]="'rect'"
-      [ngClass]="iconactive[0] ? 'active' : 'inactive'"
-    ></ssvg>
-  </button>
-  <button class="svgbt" [ngClass]="iconactive[0] ? 'selected' : 'deselected'">
-    <ssvg
-      class="selection"
-      [key]="'editdark'"
-      [ngClass]="iconactive[0] ? 'active' : 'inactive'"
-    ></ssvg>
-  </button>
-  <button class="svgbt">
-    <ssvg
-      [key]="'pic.jpg'"
-      [ngClass]="iconactive[0] ? 'active' : 'inactive'"
-    ></ssvg>
-  </button>
+  <div class="button-bar">
+    <button class="svgbt">
+      <ssvg
+        [key]="'rect'"
+        [ngClass]="iconactive[0] ? 'active' : 'inactive'"
+      ></ssvg>
+    </button>
+    <button class="svgbt" [ngClass]="iconactive[0] ? 'selected' : 'deselected'">
+      <ssvg
+        class="selection"
+        [key]="'editdark'"
+        [ngClass]="iconactive[0] ? 'active' : 'inactive'"
+      ></ssvg>
+    </button>
+    <button class="svgbt">
+      <ssvg
+        [key]="'pic.jpg'"
+        [ngClass]="iconactive[0] ? 'active' : 'inactive'"
+      ></ssvg>
+    </button>
+  </div>
   <div>
     <button (click)="toggleActive(0)">Toggle active</button>
   </div>
   <p>4 ssvg</p>
-  <button
-    class="svgbt bt-small"
-    [ngClass]="iconactive[1] ? 'selected' : 'deselected'"
-  >
-    <ssvg
-      class="selection"
-      [key]="'editdark'"
-      [ngClass]="iconactive[1] ? 'active' : 'inactive'"
-    ></ssvg>
-  </button>
+  <div class="button-bar">
+    <button
+      class="svgbt bt-small"
+      [ngClass]="iconactive[1] ? 'selected' : 'deselected'"
+    >
+      <ssvg
+        class="selection"
+        [key]="'editdark'"
+        [ngClass]="iconactive[1] ? 'active' : 'inactive'"
+      ></ssvg>
+    </button>
+    <button
+      class="svgbt bt-small"
+      [ngClass]="iconactive[1] ? 'selected' : 'deselected'"
+    >
+      <ssvg
+        class="selection"
+        [key]="'editlight'"
+        [ngClass]="iconactive[1] ? 'active' : 'inactive'"
+      ></ssvg>
+    </button>
+  </div>
   <div>
     <button (click)="toggleActive(1)">Toggle active</button>
   </div>
