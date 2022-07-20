@@ -27,15 +27,39 @@ ssvg.inactive svg {
 ssvg.inactive img {
   filter: sepia(0.9) contrast(0.3);
 }
+/*
+.selection.active .wrap-svg {
+  stroke: none;
+  fill: none;
+}
 
-.selection.active svg {
+.selection.inactive .wrap-svg {
+  stroke: none;
+  fill: none;
+}
+*/
+.selection.active .wrap-svg {
   stroke: none;
   fill: black;
   background-color: white;
 }
 
-.selection.inactive svg {
+.selection.inactive .wrap-svg {
   stroke: none;
   fill: white;
   background-color: black;
 }
+/*
+.selection.active .inner-svg {
+  stroke: none;
+  fill: black;
+  background-color: white;
+}
+
+.selection.inactive .inner-svg {
+  stroke: none;
+  fill: white;
+  background-color: black;
+}
+
+*/

@@ -10,7 +10,6 @@ import {
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ResourceService } from '../resource.service';
 
-
 @Component({
   selector: 'ssvg',
   templateUrl: './ssvg.component.html',
@@ -29,19 +28,26 @@ export class SSVGComponent implements OnInit, AfterViewInit {
   })
   private svgdiv: ElementRef;
 
-  constructor(private readonly resourceService: ResourceService, private readonly sanitizer: DomSanitizer) {
-    console.log('ctor');
+  constructor(
+    private readonly resourceService: ResourceService,
+    private readonly sanitizer: DomSanitizer
+  ) {
+    //console.log('ctor');
   }
 
   public ngOnInit(): void {
-    console.log('divinit', this.svgdiv);
+    //console.log('divinit', this.svgdiv);
   }
 
   public ngAfterViewInit(): void {
-    console.log('divafter', this.svgdiv);
+    //console.log('divafter', this.svgdiv);
 
-    this.resourceService.getImage(this.key)
-      .then((html) => (this.svgdiv.nativeElement.outerHTML = html))
+    this.resourceService
+      .getImage(this.key)
+      .then((html) => {
+        console.log('got pic', html);
+        this.svgdiv.nativeElement.outerHTML = html;
+      })
       .catch((e) => console.error('No pic', e));
   }
 
@@ -51,5 +57,3 @@ export class SSVGComponent implements OnInit, AfterViewInit {
     return this.sanitizer.bypassSecurityTrustHtml(rect);
   }*/
 }
-
-

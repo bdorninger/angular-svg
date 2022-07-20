@@ -36,6 +36,11 @@
   stroke: #3983ab;
 }
 
+button {
+  height: 50px;
+  width: 50px;
+}
+
 .bt-small {
   /* */
 }
